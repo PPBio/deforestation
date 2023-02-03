@@ -1,3 +1,13 @@
+######################################################################
+## Code to get Brazil exportation data from 1997 - 2022
+## Author : Tainá Rocha
+## R verison 4.2.2
+## Rstudio version RStudio 2022.12.0+353 "Elsbeth Geranium" Release 
+## Date: 03 February 2023
+## Last update: -
+######################################################################
+
+library(ComexstatR)
 library(dplyr)
 library(purrr)
 library(tidyr)
@@ -821,6 +831,8 @@ result_2022 <- dplyr::bind_rows(result_list_2022)
 
 result_2022_split_mun_state <- result_2022 |> 
   separate(noMunMinsgUf, into = c("municipality", "state_acronym"), sep = "-")
+
+readr::write_csv(result_2022_split_mun_state, "data-raw/2022_R_comexstat.csv")
 
 
 ## Clean environment and plots
